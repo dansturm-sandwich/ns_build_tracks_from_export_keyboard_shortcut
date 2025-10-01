@@ -19,8 +19,9 @@ class openBuildTrackMenu(QtGui.QAction):
             return False
 
         if not isinstance(hiero.ui.activeView(), hiero.ui.TimelineEditor):
-            timeline = hiero.ui.getTimelineEditor(sequence)
-            timeline.window().setFocus()
+            timeline_window = hiero.ui.getTimelineEditor(sequence).window()
+            timeline_window.activateWindow()
+            timeline_window.setFocus()
 
         hiero.ui.BuildExternalMediaTrack.BuildExternalMediaTrackAction().trigger() 
 
