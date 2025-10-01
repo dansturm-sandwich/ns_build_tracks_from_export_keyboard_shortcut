@@ -13,7 +13,15 @@ class openBuildTrackMenu(QtGui.QAction):
         self.setShortcut("Ctrl+B") 
         self.triggered.connect(self.doit) 
 
-    def doit(self): 
+    def doit(self):
+        sequence = hiero.ui.activeSequence()
+        if sequence is None:
+            return False
+
+        if not isinstance(hiero.ui.activeView(), hiero.ui.TimelineEditor):
+            timeline = hiero.ui.getTimelineEditor(sequence)
+            timeline.window().setFocus()
+
         hiero.ui.BuildExternalMediaTrack.BuildExternalMediaTrackAction().trigger() 
 
 open_build_track_menu = openBuildTrackMenu() 
