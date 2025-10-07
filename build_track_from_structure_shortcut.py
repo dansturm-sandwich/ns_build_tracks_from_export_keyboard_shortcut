@@ -3,7 +3,7 @@ Adds a Ctrl+B shortcut to open an action equivalent to "Right-click > Build Trac
 """
 
 import hiero.ui 
-from PySide6 import QtGui 
+from PySide6 import QtGui, QtCore
 
 class openBuildTrackMenu(QtGui.QAction): 
 
@@ -11,6 +11,7 @@ class openBuildTrackMenu(QtGui.QAction):
         super().__init__() 
         self.setObjectName("open_build_track_menu") 
         self.setShortcut("Ctrl+B") 
+        self.setShortcutContext(QtCore.Qt.ApplicationShortcut)
         self.triggered.connect(self.doit) 
 
     def doit(self):
